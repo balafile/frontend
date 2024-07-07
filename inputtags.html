@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input tags</title>
+</head>
+<body>
+    <u1>Application form</u1>
+    <p>
+    <form>
+        
+        <label>Age</label>
+        <input type="number" min="2" max="80" step="2" value="0">
+    </p>
+    <p>
+        <label>Name</label>
+        <input type="text" placeholder="Enter Name">
+    </p>
+    <p>
+        <label for="">password</label>
+        <input type="password" placeholder=" Enter password">
+    </p>
+
+    <p>
+        <label for="">DOB</label>
+        <input type="date">
+    </p>
+    <p>
+        <label for="">Gender</label>
+        <input type="radio" value="male" name="Gender">Male
+        <input type="radio" value="female" name="Gender">Female
+    </p>
+
+    <p>
+        <label for="">Email</label>
+        <input type="email" placeholder="Enter your email">
+    </p>
+    <p>
+        <label for="">Language</label>
+        <input type="checkbox" name="Language" value="C">C
+        <input type="checkbox" name="Language" value="C++">C++
+        <input type="checkbox" name="Language" value="Java">Java
+        <input type="checkbox" name="Language" value="Python">Python
+    </p>
+
+    <p>
+        <label for="">Dept</label>
+        <select >
+            <option name="Dept" value="ECE">ECE</option>
+            <option name="Dept" value="EEE">EEE</option>
+            <option name="Dept" value="CSE">CSE</option>
+            <option name="Dept" value="MECH">MECH</option>
+        </select>
+    </p>
+
+    <p>
+        <label for="">Feedback</label>
+        <textarea rows="10" cols="10" placeholder="Welcome!!!"></textarea>
+
+    </p>
+    <p>
+        <label>Upload Resume</label>
+        <input type="file" multiple>
+    </p>
+    <p>
+        <label>Choose your color</label>
+        <input type="color" value="#f06429">
+    </p>
+    <p>
+        <label>Time</label>
+        <input type="time">
+    </p>
+    <p>
+        <label>Date & Time</label>
+        <input type="datetime-local">
+    </p>
+    <p>
+        <label>Week</label>
+        <input type="week">
+    </p>
+    <p>
+        <label>Month</label>
+        <input type="month">
+    </p>
+    <p>
+        <label>Website</label>
+        <input type="url" placeholder="https://example.com">
+    </p>
+    <p>
+        <label>Cell number</label>
+        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[9-0]{4}" placeholder="000-000-0000" >
+    </p>
+    
+    <p>
+        <label>Range</label>
+        <input type="range" min="10" max="100" value="35">
+    </p>
+    <p>
+        <label>Button</label>
+        <input type="button" name="ok" value="OK">
+    </p>
+    <p>
+        <label>Hidden</label>
+        <input type="hidden" name="hidden" value="uname">
+    </p>
+    <p>
+        <label>Image</label>
+        <input type="image" src="../Assets/Cartoon.jpg" alt="Cartoons" width="100" height="100">
+    </p>
+    <p>
+        Search:<input type="search" size="25">
+    </p>
+
+
+<p>
+    <input type="submit" name="submit" value="Submit">
+</p>   
+
+<p>
+    <input type="reset" name="reset" value="Reset">
+</p>   
+</form>
+
+</body>
+</html>
