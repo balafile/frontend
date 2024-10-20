@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Example</title>
+    <style>
+        /* Your existing CSS code goes here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button.delete-btn {
+            background-color: #dc3545;
+        }
+        button.delete-btn:hover {
+            background-color: #c82333;
+        }
+        button.edit-btn {
+            background-color: #ffc107;
+        }
+        button.edit-btn:hover {
+            background-color: #e0a800;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CRUD Operations</h1>
+        
+        <!-- Form for adding new users -->
+        <div class="form">
+            <input type="text" id="name" placeholder="Name">
+            <input type="number" id="age" placeholder="Age">
+            <button id="addUpdateBtn" onclick="handleSubmit()">Add User</button>
+        </div>
+
+        <!-- Display users -->;
+        <h2>User List</h2>
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script>
+        let users = [];
+        let userId = 1;  // Auto-incrementing ID
+        let editingUserId = null;  // To track if editing
+
+        // CREATE or UPDATE User
+        function handleSubmit() {
+            const nameInput = document.getElementById('name');
+            const ageInput = document.getElementById('age');
+            const addUpdateBtn = document.getElementById('addUpdateBtn');
+            
+            const name = nameInput.value;
+            const age = ageInput.value;
+            
+            if (name === "" || age === "") {
+                alert("Please fill in both fields.");
+                return;
+            }
+            
+            if (editingUserId === null) {
+                // If not editing, create a new user
+                users.push({ id: userId++, name, age });
+            } 
+            else {
+                // If editing, update the existing user
+                const user = users.find(user => user.id === editingUserId);
+                if (user) {
+                    user.name = name;
+                    user.age = age;
+                }
+                editingUserId = null; // Reset edit mode
+                addUpdateBtn.textContent = "Add User";  // Change button back
+            }
+            
+            // Clear input fields
+            nameInput.value = '';
+            ageInput.value = '';
+            
+            // Refresh the user list
+            displayUsers();
+        }
+
+        // READ and display users
+        function displayUsers() {
+            const userTable = document.getElementById('userTable').getElementsByTagName('tbody')[0];
+            
+            // Clear the current table rows
+            userTable.innerHTML = '';
+            
+            // Populate table with users
+            users.forEach(user => {
+                let row = userTable.insertRow();
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.age}</td>
+                    <td>
+                        <button class="edit-btn" onclick="editUser(${user.id})">Edit</button>
+                        <button class="delete-btn" onclick="deleteUser(${user.id})">Delete</button>
+                    </td>
+                `;
+            });
+        }
+
+        // EDIT User (pre-fill input fields and change button)
+        function editUser(id) {
+            const user = users.find(user => user.id === id);
+            
+            if (user) {
+                // Pre-fill the form with the user's data
+                document.getElementById('name').value = user.name;
+                document.getElementById('age').value = user.age;
+
+                // Set editing mode
+                editingUserId = id;
+
+                // Change the button text to "Update User"
+                document.getElementById('addUpdateBtn').textContent = "Update User";
+            }
+        }
+
+        // DELETE User
+        function deleteUser(id) {
+            const index = users.findIndex(user => user.id === id);
+            
+            if (index !== -1) {
+                users.splice(index, 1);  // Remove the user from the array
+                displayUsers();  // Refresh the user list
+            } else {
+                alert("User not found!");
+            }
+        }
+
+        // Initial display of users (empty at first)
+        displayUsers();
+    </script>
+</body>
+</html>
