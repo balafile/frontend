@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='contact.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a class="abs">Balamurugan</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+    <h1>Contact Me</h1>
+    <form method="POST">
+        <fieldset>
+            
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required cols="30" rows="10"></textarea>
+        <br>
+        <button type="submit">Send Message</button>
+    </fieldset>
+    </form>
+</section>
+<footer>
+    <p>&copy; 2024 Balamurugan P</p>
+</footer>
+    
+</body>
+</html>
